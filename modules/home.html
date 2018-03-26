@@ -1,0 +1,114 @@
+
+<div id=page__ID>
+	<div id=panel__ID class="container-fluid" style='max-width:400px'>
+		<div class="text-center panel__ID">
+            <h1  class="text-center" >Sign In
+            <br>
+            </h1>
+            <hr style='border-top:1px solid #fff;'></hr>
+            <div class="">
+                <input id=username__ID placeholder="Username" class="form-control" autocomplete="off" />
+            </div>
+            <br>
+            <div class="">
+                <input class="form-control" id=password__ID type="password" placeholder="Password"  />
+            </div>
+                <br><span id="ErrMsg__ID" style='color:red'></span>
+            <div class="">
+                <input id=signin__ID type=button value='Sign in' class="btn btn-primary" value="Sign In" />&nbsp;&nbsp;&nbsp;
+            </div>
+		</div>
+	</div>
+</div>
+<!--
+<section>
+    <div class=C__ID__s>
+        <p></p>
+        <input id=username__ID placeholder="Username" class=C__ID__input autocomplete="off" />
+        <br><input id=password__ID placeholder="Password" class=C__ID__input type=password />
+        <br><span id="ErrMsg__ID"></span>
+        <br><input id=signin__ID type=button value='Sign in' class=C__ID__button />
+        <br>
+    </div>
+</section>
+-->
+<script>
+    function F__ID(){
+        $('#signin__ID').on('click',function(){
+			//------------------------------------
+			//get visit
+            var visit=window.location.href.split('visit=').pop().split('&')[0];
+            if(window.location.href.indexOf('visit=')==-1 || visit==''){
+                alert("No visit was specified.");
+				return;
+            }
+			//------------------------------------
+			$('#ErrMsg__ID').text("");
+            var username=$('#username__ID').val();
+            var password=$('#password__ID').val();
+			if($vm.server=='development'){
+				if(username==="") username="1-20011195";
+			 	if(password==="") password="SYDlUqDc";
+			}
+            var a=username.split('-');
+            if(a.length!=2){
+                $('#ErrMsg__ID').text("Invalid participant login ID or password.")
+                return;
+            }
+            var participant_uid=a[0];
+            var setup_pid=a[1];
+			//------------------------------------
+			$vm.coq_participant_pid=setup_pid;	//no participant, only visit setup
+			$vm.coq_participant_uid=participant_uid;
+			$vm.coq_participant=participant_uid;
+			$vm.coq_setup_pid=setup_pid;
+			$vm.coq_visit=visit;
+			//------------------------------------
+			$VmAPI.request({data:{cmd:'participant_signin_v2',username:username,password:password,check_uid:"1",json:"1"},callback:function(res){
+                if(res.ret=="1"){
+                    $vm.online_questionnaire=1;
+                    $vm.user=username;
+                    $vm.user_id=res.user_id;
+					$('#username_0').text(username);
+                    $VmAPI.set_token(res.token,'');
+                    if(res.S1!=undefined) $vm.coq_participant=res.S1;
+					$vm.coq_task_list=res.List;
+					$vm.nav_load_module("panel_"+visit);
+                }
+                else{
+                    $('#ErrMsg__ID').text("Invalid participant login ID or password.")
+                }
+            }})
+			//------------------------------------
+    	});
+    }
+</script>
+<style>
+	#D__ID{
+		height:100%;
+        overflow:auto;
+		animation: vm_module_fadein 1.0s;
+		background:rgba(255,255,255,0.2);
+	}
+	#page__ID{
+		height:100%;
+		display: flex;
+		align-items: center;
+	}
+	.panel__ID{
+		color:#ddd;
+		font-weight: normal;
+		background: rgba(20,20,20,0.8);
+	    padding: 30px 20px 10px 20px;
+	    border-radius: 15px;
+	}
+	@media screen and (max-width:786px){
+		#page__ID{
+			display: block;
+		}
+	}
+    #panel__ID li{
+		cursor:pointer;
+	}
+
+</style>
