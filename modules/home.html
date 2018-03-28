@@ -83,7 +83,7 @@
                     $vm.user_id=res.user_id;
 					$('#username_0').text(username);
                     $VmAPI.set_token(res.token,'');
-                    if(res.S1!=undefined) $vm.coq_participant=res.S1;
+					if(res.S1!=undefined) $vm.coq_participant=res.S1;
 					$vm.coq_task_list=res.List;
 					$vm.nav_load_module("panel_"+visit);
                 }

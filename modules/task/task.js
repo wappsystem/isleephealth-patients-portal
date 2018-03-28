@@ -5,6 +5,10 @@ $('#D__ID').on('load',function(){
     rid=$vm.vm['__ID'].op.sys.config.rid;
     db_pid=$vm.vm['__ID'].op.sys.config.db_pid;
 	//if(_any_change!=='') _any_change();
+	var module_name=$vm.vm["__ID"].name;
+	if(module_name=='panel_initial_contact-details'){
+		$('input[name=email]').val($vm.coq_participant)
+	}
     if(rid!=undefined && rid!=''){
         $VmAPI.request({data:{cmd:'read_record_s2',rid:rid,db_pid:db_pid},callback:function(res){
             if(res.records.length==1){
@@ -34,17 +38,7 @@ $('#F__ID').submit(function(event){
 	var module_name=$vm.vm["__ID"].name;
 	var db_pid=$vm.module_list[module_name].table_id
 	if(module_name=='panel_initial_ess'){
-		alert(11)
-		alert(parseInt($('#ESS_1__ID:checked').val())
-		alert(parseInt($('#ESS_2__ID:checked').val())
-		alert(parseInt($('#ESS_3__ID:checked').val())
-		alert(parseInt($('#ESS_4__ID:checked').val())
-		alert(parseInt($('#ESS_5__ID:checked').val())
-		alert(parseInt($('#ESS_6__ID:checked').val())
-		alert(parseInt($('#ESS_7__ID:checked').val())
-		alert(parseInt($('#ESS_8__ID:checked').val())
-
-		$('#ESS__ID').val(parseInt($('#ESS_1__ID:checked').val())+parseInt($('#ESS_2__ID:checked').val())+parseInt($('#ESS_3__ID:checked').val())+parseInt($('#ESS_4__ID:checked').val())+parseInt($('#ESS_5__ID:checked').val())+parseInt($('#ESS_6__ID:checked').val())+parseInt($('#ESS_7__ID:checked').val())+parseInt($('#ESS_8__ID:checked').val()))
+		$('#ESS__ID').val(parseInt($('input[name=ESS_1]:checked').val())+parseInt($('input[name=ESS_2]:checked').val())+parseInt($('input[name=ESS_3]:checked').val())+parseInt($('input[name=ESS_4]:checked').val())+parseInt($('input[name=ESS_5]:checked').val())+parseInt($('input[name=ESS_6]:checked').val())+parseInt($('input[name=ESS_7]:checked').val())+parseInt($('input[name=ESS_8]:checked').val()))
 	}
 	if(module_name=='initial_dass'){
         $('#DASS_DS__ID').val((parseInt($("input[name='DASS_3']:checked").val())+parseInt($("input[name='DASS_5']:checked").val())+parseInt($("input[name='DASS_10']:checked").val())+parseInt($("input[name='DASS_13']:checked").val())+parseInt($("input[name='DASS_16']:checked").val())+parseInt($("input[name='DASS_17']:checked").val())+parseInt($("input[name='DASS_21']:checked").val()))*2);

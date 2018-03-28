@@ -3,13 +3,13 @@
 	{
 		"health-history":		{"url":"/modules/task/health-history.html","table_id":"20011365","report":"table_form_health_history"},
 		"sleep-history":		{"url":"/modules/task/sleep-history.html","table_id":"20011469","report":"table_form_sleep_history"},
-		"contact-details":				{"url":"/modules/task/contact-details.html","table_id":"20011470","report":"table_form_contact_details"},
+		"contact-details":		{"url":"/modules/task/contact-details.html","table_id":"20011470","report":"table_form_contact_details"},
 		"medicare-referrals":	{"url":"/modules/task/medicare-referrals.html","table_id":"20011363","report":"table_form_medicare_referrals"},
-		"ess":	{"url":"/modules/task/ess.html","table_id":"20011364","report":"table_form_ess"},
-		"dass":	{"url":"/modules/task/dass.html","table_id":"20011464","report":"table_form_dass"},
-		"isi":	{"url":"/modules/task/isi.html","table_id":"20011465","report":"table_form_isi"},
-		"psqi":	{"url":"/modules/task/psqi.html","table_id":"20011466","report":"table_form_psqi"},
-		"phq":	{"url":"/modules/task/phq.html","table_id":"20011467","report":"table_form_phq"},
-		"fss":	{"url":"/modules/task/fss.html","table_id":"20011468","report":"table_form_fss"}
+		"ess":					{"url":"/modules/task/ess.html","table_id":"20011364","report":"table_form_ess"},
+		"dass":					{"url":"/modules/task/dass.html","table_id":"20011464","report":"table_form_dass"},
+		"isi":					{"url":"/modules/task/isi.html","table_id":"20011465","report":"table_form_isi"},
+		"psqi":					{"url":"/modules/task/psqi.html","table_id":"20011466","report":"table_form_psqi"},
+		"phq":					{"url":"/modules/task/phq.html","table_id":"20011467","report":"table_form_phq"},
+		"fss":					{"url":"/modules/task/fss.html","table_id":"20011468","report":"table_form_fss"}
     }
 }
