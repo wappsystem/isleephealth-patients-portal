@@ -55,7 +55,7 @@ VmInclude:/modules/layout/main.html.footer.html
 
 		var $image1 = $("<img>");
 		$image1.on('load',(function(){ $('body').css("background", "url("+$(this).attr("src")+") no-repeat bottom center"); $('body').css("background-size", "cover");  }));
-		$image1.attr("src", "__HOST__/images/background.jpg");
+		$image1.attr("src", "__CURRENT_PATH__/main.html.background.jpg");
 
 		//------------------------------------
 		//over write vm alert

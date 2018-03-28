@@ -4,6 +4,6 @@
 	"default_production":"Yes",
     "panels":{
 		"panel_main":{"url":"","modules":["main.json"]},
-        "panel_first":{"url":"/modules/panel/first.html","modules":["first.json"]}
+        "panel_initial":{"url":"/modules/panel/initial.html","modules":["initial.json"]}
 	}
 }

@@ -1,26 +1,26 @@
 <div id=page__ID>
 	<div id=panel__ID class="container-fluid" style='max-width:800px'>
 		<div class="text-center panel__ID">
-			<h2>Clinic Online Registration</h2>
+			<h2>Online Registration and Questionnaires<br>Initial Consultaion</h2>
     	  	  <hr style='border-top:1px solid #000;'></hr>
     				  <h5 class= "text-left">
                           Please complete each of the following sections. Please call us on XX or email us on XXX if you are having trouble completing these questionnaires or there are questions you do not understand.<br><br>
                       </h5>
                       <div class="text-left">
                           <ul>
-                              <li module=personal><div id=personal></div> Personal</li>
-                              <li module=medicare-referrals><div id="medicare-referrals"></div> Medicare - DVA - Self Funded Details</li>
-                              <li module=sleep-history><div id="sleep-history"></div> Sleep History</li>
-                              <li module=health-history><div id="health-history"></div> Health History</li>
-                              <li module=epworth-sleepiness-scale><div id="epworth-sleepiness-scale"></div> Epworth Sleepiness Scale</li>
-                              <li module=additional-questions><div id="additional-questions"></div> Additional Questions</li>
-							  <!--<li module=short-sleep-history><div id="short-sleep-history"></div> Short Sleep History</li>-->
-							  <li module=consent><div id="consent"></div> Consent</li>
-                              <li module=volunteer><div id=volunteer></div> Become a Research Volunteer</li>
-                          </ul>
+							<li module=personal><div id=personal></div> Personal</li>
+							<li module=medicare-referrals><div id="medicare-referrals"></div> Medicare - DVA - Self Funded Details</li>
+							<li module=sleep-history><div id="sleep-history"></div> Sleep History</li>
+							<li module=health-history><div id="health-history"></div> Health History</li>
+							<li module=ess><div id="ess"></div> Epworth Sleepiness Scale</li>
+							<li module=dass><div id="dass"></div> Depression Anxiety Stress Scales</li>
+							<li module=isi><div id="isi"></div> Insomnia Severity Index</li>
+							<li module=phq><div id="phq"></div> Patient Health Questionnaire</li>
+							<li module=fss><div id="fss"></div> Fatigue Severity Scale</li>
+                        </ul>
                       </div>
                       <h5 class= "text-left">
-                          Once they are completed please click on ‘sign-out’ below, to exit the system. Thank you for your time now in helping us help you during your upcoming visit. We look forward to seeing you soon.<br><br>
+                          Once they are completed please click on ‘sign-out’ below, to exit the system. Thank you for your time in helping us help you during your upcoming visit. We look forward to seeing you soon.<br><br>
                       </h5>
                       <a name=signinout onclick="$vm.nav_click_process('vm_signinout');" class="btn btn-primary" style='cursor:pointer'>Sign out</a>
     			  </div>
@@ -35,11 +35,11 @@
 		//$('#personal').attr("class", "fa fa-check");
 		//$('#personal').attr("class", "fa fa-remove");
 		//--------------------------------------------------------
-		$('#D__ID').on('load',function(){	set_first_link();	})
+		$('#D__ID').on('load',function(){	set_initial_link();	})
 		//--------------------------------------------------------
-		$('#D__ID').on('show',function(){	set_first_link();	})
+		$('#D__ID').on('show',function(){	set_initial_link();	})
 		//--------------------------------------------------------
-		var set_first_link=function(){
+		var set_initial_link=function(){
 			var req={cmd:'participant_task_status_v2',participant_username:$vm.user,check_uid:"1",json:"1"};
 			$VmAPI.request({data:req,callback:function(res){
                 $('#panel__ID li').each(function(){
@@ -152,5 +152,17 @@
     #panel__ID li{
 		cursor:pointer;
 	}
+	ul {
+		list-style:none;
+	}
+	.li_not_allowed__ID{
+		color:#666!Important;
+		cursor:not-allowed!Important;
+	}
+	.li_allowed__ID{
+		color:#000!Important;
+		cursor:pointer!Important;
+	}
+
 
 </style>
