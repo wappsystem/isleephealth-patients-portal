@@ -11,5 +11,31 @@
 		"psqi":					{"url":"/modules/task/psqi.html","table_id":"20011466","report":"table_form_psqi"},
 		"phq":					{"url":"/modules/task/phq.html","table_id":"20011467","report":"table_form_phq"},
 		"fss":					{"url":"/modules/task/fss.html","table_id":"20011468","report":"table_form_fss"}
+    },
+	"dictionary":
+		{
+        "contact-details":{
+            "Name":"Name",
+            "Sex":"Sex",
+            "DOB":"Date of birth",
+            "Residential_Address":"Residential Address",
+            "Suburb":"Suburb",
+            "Contact_number":"Phone",
+            "Contact_email":"Email",
+            "Emergency_contact":"Emergency Contact",
+            "Emergency_contact_number":"Emergency Contact Phone"
+        },
+        "medicare-referrals":{
+            "Medicare_number":"Medicare number",
+            "Medicare_reference_number":"Ref",
+            "Medicare_expiry":"Expiry Date",
+            "Residential_Address":"Residential Address",
+            "Referring_doctor":"Referring Doctor",
+            "Referring_doctor_address":"Address",
+            "GP_Family_doctor":"GP/Family Doctor",
+            "GP_Family_doctor_address":"Address",
+            "DVA":"DVA"
+        }
     }
+
 }
