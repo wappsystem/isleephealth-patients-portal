@@ -4,7 +4,7 @@
 		"health-history":		{"url":"/modules/task/health-history.html","table_id":"20011365","report":"table_form_health_history"},
 		"sleep-history":		{"url":"/modules/task/sleep-history.html","table_id":"20011469","report":"table_form_sleep_history"},
 		"contact-details":		{"url":"/modules/task/contact-details.html","table_id":"20011470","report":"table_form_contact_details"},
-		"medicare-referrals":	{"url":"/modules/task/medicare-referrals.html","table_id":"20011363","report":"table_form_medicare_referrals"},
+		"medicare-referrals":	{"url":"/modules/task/medicare-referrals.html","table_id":"20011363","report":"table_form_medicare_referrals","v3":"28032501"},
 		"ess":					{"url":"/modules/task/ess.html","table_id":"20011364","report":"table_form_ess"},
 		"dass":					{"url":"/modules/task/dass.html","table_id":"20011464","report":"table_form_dass"},
 		"isi":					{"url":"/modules/task/isi.html","table_id":"20011465","report":"table_form_isi"},

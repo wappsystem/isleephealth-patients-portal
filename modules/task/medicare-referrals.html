@@ -48,7 +48,7 @@
             <div class="row row__ID">
                 <div class="col-sm-6" >
                     <label class="control control-radio">Department of Veterans Affairs
-                        <input class="form-control" type="radio" id=benefits__ID name=benefits value="Department of Veterans Affairs" >
+                        <input class="form-control" type="radio" name=benefits value="Department of Veterans Affairs" >
                         <div class="control_indicator"></div>
                     </label>
                 </div>
@@ -60,7 +60,7 @@
             <div class="row row__ID">
                 <div class="col-sm" >
                     <label class="control control-radio">Self Funded (No Benefits)
-                        <input  class="form-control" type="radio" id=benefits__ID name=benefits value="Self Funded">
+                        <input  class="form-control" type="radio" name=benefits value="Self Funded">
                         <div class="control_indicator"></div>
                     </label>
                     <div class="col-sm" >
@@ -95,6 +95,7 @@
                     <textarea class="form-control" name="GP_Family_doctor_address" id=GP_Family_doctor_address__ID placeholder="Address" ></textarea>
                 </div>
             </div>
+            <div class="row row__ID"><div class="col-sm col-lg-3">Doc1</div><div id=Doc1__ID name=Doc1 class="col-sm"></div></div>
             <br>
 			<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
             <br><br>
@@ -103,8 +104,12 @@
 </section>
 <script>
 function F__ID(){
-    VmInclude:__CURRENT_PATH__/task.js
-    $('#D__ID').on('load',function(){
+    //--------------------------------------------------------
+    var demo_data_id=$vm.module_list[$vm.vm['__ID'].name].v3;
+    var rid,pid;
+    var alert_validation="";
+    //--------------------------------------------------------
+    var medicare=function(){
         var currentYear = (new Date).getFullYear();
         $('#Medicare_expiry_yy__ID').prop('min',currentYear).prop('max',currentYear+5);
         radioValue = $("input[name='benefits']").val();
@@ -131,7 +136,8 @@ function F__ID(){
                 $('#Medicare_expiry_yy__ID').prop('disabled',true);
             break;
         }
-    });
+    };
+    //--------------------------------------------------------
     $('#alert_success__ID').hide();
     $('#alert_fail__ID').hide();
     $("input[name='benefits']").change(function(){
@@ -159,8 +165,8 @@ function F__ID(){
                 $('#Medicare_expiry_yy__ID').prop('disabled',true);
             break;
         }
-
     })
+    //--------------------------------------------------------
     $('#Medicare_number__ID').change(function(){
          var mcn=$(this).val();
          var mcn1=mcn.replace(/\s/g,'');
@@ -187,8 +193,94 @@ function F__ID(){
             $('#ModalLabel').html('Error!');
         }
     })
+    //--------------------------------------------------------
+    $('#D__ID').on('load',function(){
+    	$("#F__ID")[0].reset();
+        medicare();
+        rid=$vm.vm['__ID'].op.sys.config.rid;
+        db_pid=$vm.vm['__ID'].op.sys.config.db_pid;
+    	var module_name=$vm.vm["__ID"].name;
+        if(rid!=undefined && rid!=''){
+            $VmAPI.request({data:{cmd:'read_record_s2',rid:rid,db_pid:db_pid},callback:function(res){
+                if(res.records.length==1){
+                    $.each(res.records[0], function(name, value){
+                        //var $el = $('#'+name+'__ID');
+    					var $el = $('#F__ID *[name='+name+']');
+                        var type = $el.attr('type');
+                        switch(type){
+    						case 'checkbox':
+    							if(value!='off') $el.attr('checked', true);
+    							else $el.attr('checked', false);
+                                break;
+                            case 'radio':
+    							$('input[name="' + name+ '"][value="' + value + '"]').prop('checked', true);
+                                break;
+                            default:
+                                $el.val(value);
+                        }
+                    });
+                    $vm.render_file_field( $('#Doc1__ID'),res.records[0]);
+                }
+            }})
+        }
+    })
+    //--------------------------------------------------------
+    $('#F__ID').submit(function(event){
+    	event.preventDefault();
+    	if(alert_validation!="") {$vm.alert(alert_validation); return false;}
+    	var module_name=$vm.vm["__ID"].name;
+    	var db_pid=$vm.module_list[module_name].table_id
+    	var data={};
+    	var a=$("#F__ID").serializeArray(); $.each(a, function () {	data[this.name]=this.value || '';});
+    	$("#F__ID input:checkbox:not(:checked)").each(function(){
+    		data[this.name]="off";
+    	})
+    	$("#F__ID input:checkbox:checked").each(function(){
+    		data[this.name]="on";
+    	})
+        var num=$vm.set_file_name_as_upload_unsuccessful(data,$('#F__ID'));
 
-
+    	data.Participant=$vm.coq_participant;
+    	data.Participant_uid=$vm.coq_participant_uid;
+    	var dbv={
+            V3:demo_data_id,
+    		S1:$vm.coq_visit,
+    		PPID:$vm.coq_participant_pid,
+    		PUID:$vm.coq_participant_uid,
+    	}
+    	//-------------------------------------
+        var req="";
+        if(rid=='' || rid=='0' || rid==undefined){
+            var req={cmd:"add_json_record",db_pid:db_pid,data:data,dbv:dbv}
+        }
+        else req={cmd:"modify_json_record",rid:rid,db_pid:db_pid,data:data,dbv:dbv};
+        //1. add or modify record
+        $VmAPI.request({data:req,callback:function(res){
+            if(res.ret<=0){
+                $vm.alert("Sorry there is a problem. You can try again later.");
+                return;
+            }
+            //2. upload files
+/*            if(rid==undefined){
+                rid=res.ret;
+                $.extend($vm.vm['__ID'].op.record,data);
+                $vm.vm['__ID'].op.record.ID=rid;
+            }
+            if(num>0){
+                $vm.upload_form_files(rid,$('#F__ID'),function(){
+                    var data=$vm.get_original_file_name($('#F__ID'));
+                    var req={cmd:"modify_json_record",rid:rid,db_pid:db_pid,data:data,dbv:{}};
+                    //3. recorver name
+                    $VmAPI.request({data:req,callback:function(res){
+                        $.extend($vm.vm['__ID'].op.record,data);
+                        $vm.alert('Your data has been successfully submitted');
+                    }})
+                })
+            }
+*/
+            window.history.back(-1);
+        }});
+    });
 }
 </script>
 <style>
