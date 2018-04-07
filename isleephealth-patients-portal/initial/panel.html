@@ -31,15 +31,12 @@
 <script>
 	function F__ID(){
 		//--------------------------------------------------------
-		var prefix=$vm.vm['__ID'].name+"_";
-		//$('#personal').attr("class", "fa fa-check");
-		//$('#personal').attr("class", "fa fa-remove");
+		var prefix=$vm.module_list[$vm.vm['__ID'].name].prefix; if(prefix==undefined) prefix="";
+        //---------------------------------------------
+		$('#D__ID').on('load',function(){	set_link();	})
+		$('#D__ID').on('show',function(){	set_link();	})
 		//--------------------------------------------------------
-		$('#D__ID').on('load',function(){	set_initial_link();	})
-		//--------------------------------------------------------
-		$('#D__ID').on('show',function(){	set_initial_link();	})
-		//--------------------------------------------------------
-		var set_initial_link=function(){
+		var set_link=function(){
 			var req={cmd:'participant_task_status_v2',participant_username:$vm.user,check_uid:"1",json:"1"};
 			$VmAPI.request({data:req,callback:function(res){
                 $('#panel__ID li').each(function(){
@@ -62,23 +59,15 @@
 							$li.removeClass('li_allowed__ID')
 							$li.addClass('li_not_allowed__ID')
 							$('#'+module).attr("class", "fa fa-check")
-/*
-							$li.on('click',function(){
-								var m=prefix+$(this).attr('module');
-								$vm.nav_load_module(m,$vm.root_layout_content_slot,{rid:$(this).data('record_id'),db_pid:$(this).data('record_pid')});
-							});
-*/
                         }
                     }
                 });
                 $('#panel__ID li').each(function(){
 					var $li=$(this);
                     if($li.data('record_id')==''){
-                        //$li.removeClass('li_not_allowed__ID')
-                        //$li.addClass('li_allowed__ID')
 						$li.on('click',function(){
 							var m=prefix+$(this).attr('module');
-							$vm.nav_load_module(m,$vm.root_layout_content_slot,{db_pid:$vm.module_list[m].table_id});
+							$vm.nav_load_module(m,$vm.root_layout_content_slot,{goback:"1"});
 						});
                     }
                 });
@@ -86,45 +75,6 @@
 			//--------------------------------------------------------
 		}
 		//--------------------------------------------------------
-
-                        /*
-                        $('#panel__ID li').on('click',function(event){
-                			event.stopPropagation();
-                			if( $(this).hasClass( 'li_not_allowed__ID' )===true){
-                				  alert("No permission!");
-                				  return;
-                			}
-                			var m=group+$(this).attr('module');
-                			$vm.nav_load_module(m);
-                		});
-
-                            if(done===0){
-        						var module=$li.attr('module');
-        						if($vm.module_list[module]==undefined){
-        							alert("The module "+module+" is not in the module list");
-        							return;
-        						}
-        						var li_pid=$vm.module_list[module].table_id;
-        						var found_pid=0;
-        						for(var i=0;i<res.records.length;i++){
-        							if(res.records[i]['PID']==li_pid){
-        								found_pid=1;
-        								break;
-        							}
-        						}
-        						if(found_pid===0){ //no record on server
-        							done=1;
-        							$li.removeClass('li_not_allowed__ID')
-        							$li.addClass('li_allowed__ID')
-        							$li.on('click',function(){
-        								var m=group+$(this).attr('module');
-        								$vm.nav_load_module(m,$vm.root_layout_content_slot,{db_pid:$vm.module_list[m].table_id});
-        							});
-        							//--------------------------------------------------------
-        						}
-        					}
-        				});
-                        */
 	}
 </script>
 <style>
