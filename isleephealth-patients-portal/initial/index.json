@@ -1,11 +1,11 @@
 {
 	"modules":
 	{
-		"contact-details":		{"table_id":"20011470","url":"isleephealth-patients-portal/initial/modules/contact-details.html",   "report":"table_form_contact_details"},
-		"medicare-referrals":	{"table_id":"20011363","url":"isleephealth-patients-portal/initial/modules/medicare-referrals.html","report":"table_form_medicare_referrals","v3":"28032501"},
-		"health-history":		{"table_id":"20011365","url":"/modules/task/health-history.html","report":"table_form_health_history"},
-		"sleep-history":		{"url":"/modules/task/sleep-history.html","table_id":"20011469","report":"table_form_sleep_history"},
-		"ess":					{"url":"/modules/task/ess.html","table_id":"20011364","report":"table_form_ess"},
+		"contact-details":		{"table_id":"20011470","url":"isleephealth-patients-portal/initial/modules/contact-details.html"},
+		"medicare-referrals":	{"table_id":"20011363","url":"isleephealth-patients-portal/initial/modules/medicare-referrals.html"},
+        "sleep-history":		{"table_id":"20011469","url":"isleephealth-patients-portal/initial/modules/sleep-history.html"},
+		"health-history":		{"table_id":"20011365","url":"isleephealth-patients-portal/initial/modules/health-history.html"},
+		"ess":					{"table_id":"20011364","url":"isleephealth-patients-portal/initial/modules/ess.html"},
 		"dass":					{"url":"/modules/task/dass.html","table_id":"20011464","report":"table_form_dass"},
 		"isi":					{"url":"/modules/task/isi.html","table_id":"20011465","report":"table_form_isi"},
 		"psqi":					{"url":"/modules/task/psqi.html","table_id":"20011466","report":"table_form_psqi"},
