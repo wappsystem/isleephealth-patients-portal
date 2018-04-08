@@ -6,11 +6,11 @@
         "sleep-history":		{"table_id":"20011469","url":"isleephealth-patients-portal/initial/modules/sleep-history.html"},
 		"health-history":		{"table_id":"20011365","url":"isleephealth-patients-portal/initial/modules/health-history.html"},
 		"ess":					{"table_id":"20011364","url":"isleephealth-patients-portal/initial/modules/ess.html"},
-		"dass":					{"url":"/modules/task/dass.html","table_id":"20011464","report":"table_form_dass"},
-		"isi":					{"url":"/modules/task/isi.html","table_id":"20011465","report":"table_form_isi"},
-		"psqi":					{"url":"/modules/task/psqi.html","table_id":"20011466","report":"table_form_psqi"},
-		"phq":					{"url":"/modules/task/phq.html","table_id":"20011467","report":"table_form_phq"},
-		"fss":					{"url":"/modules/task/fss.html","table_id":"20011468","report":"table_form_fss"}
+		"dass":					{"table_id":"20011464","url":"isleephealth-patients-portal/initial/modules/dass.html"},
+		"isi":					{"table_id":"20011465","url":"isleephealth-patients-portal/initial/modules/isi.html"},
+		"psqi":					{"table_id":"20011466","url":"isleephealth-patients-portal/initial/modules/psqi.html"},
+		"phq":					{"table_id":"20011467","url":"isleephealth-patients-portal/initial/modules/phq.html"},
+		"fss":					{"table_id":"20011468","url":"isleephealth-patients-portal/initial/modules/fss.html"}
     },
 	"dictionary":
 		{

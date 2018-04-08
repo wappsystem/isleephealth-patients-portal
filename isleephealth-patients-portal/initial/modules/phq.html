@@ -1,3 +1,6 @@
+<div id=admin__ID style='display:none'>
+    VmInclude:__COMPONENT__/toolbar/form-toolbar.html
+</div>
 <section id=form_container__ID>
     <div id=header__ID>
 		PATIENT HEALTH QUESTIONNAIRE
@@ -8,7 +11,7 @@
             <hr style='border-top:1px solid #727b84;'></hr>
             <div class="row row__ID">
                 <div class="col-sm control-group">
-                    <span id=quest__ID>1. Little interest or pleasure in doing things</span>
+                    <span>1. Little interest or pleasure in doing things</span>
                 </div>
                 <div class="col-sm control-group">
                     <label class="control control-radio">
@@ -32,7 +35,7 @@
             <hr style='border-top:1px solid #727b84;'></hr>
             <div class="row row__ID">
                 <div class="col-sm control-group">
-                    <span id=quest__ID>2. Feeling down, depressed, or hopeless </span>
+                    <span>2. Feeling down, depressed, or hopeless </span>
                 </div>
                 <div class="col-sm control-group">
                     <label class="control control-radio">
@@ -56,7 +59,7 @@
             <hr style='border-top:1px solid #727b84;'></hr>
             <div class="row row__ID">
                 <div class="col-sm control-group">
-                    <span id=quest__ID>3. Trouble falling or staying asleep, or sleeping too much </span>
+                    <span>3. Trouble falling or staying asleep, or sleeping too much </span>
                 </div>
                 <div class="col-sm control-group">
                     <label class="control control-radio">
@@ -80,7 +83,7 @@
             <hr style='border-top:1px solid #727b84;'></hr>
             <div class="row row__ID">
                 <div class="col-sm control-group">
-                    <span id=quest__ID>4. Feeling tired or having little energy </span>
+                    <span>4. Feeling tired or having little energy </span>
                 </div>
                 <div class="col-sm control-group">
                     <label class="control control-radio">
@@ -104,7 +107,7 @@
             <hr style='border-top:1px solid #727b84;'></hr>
             <div class="row row__ID">
                 <div class="col-sm control-group">
-                    <span id=quest__ID>5. Poor appetite or overeating </span>
+                    <span>5. Poor appetite or overeating </span>
                 </div>
                 <div class="col-sm control-group">
                     <label class="control control-radio">
@@ -128,7 +131,7 @@
             <hr style='border-top:1px solid #727b84;'></hr>
             <div class="row row__ID">
                 <div class="col-sm control-group">
-                    <span id=quest__ID>6. Feeling bad about yourself — or that you are a failure or have let yourself or your family down</span>
+                    <span>6. Feeling bad about yourself — or that you are a failure or have let yourself or your family down</span>
                 </div>
                 <div class="col-sm control-group">
                     <label class="control control-radio">
@@ -152,7 +155,7 @@
             <hr style='border-top:1px solid #727b84;'></hr>
             <div class="row row__ID">
                 <div class="col-sm control-group">
-                    <span id=quest__ID>7. Trouble concentrating on things, such as reading the newspaper or watching television </span>
+                    <span>7. Trouble concentrating on things, such as reading the newspaper or watching television </span>
                 </div>
                 <div class="col-sm control-group">
                     <label class="control control-radio">
@@ -176,7 +179,7 @@
             <hr style='border-top:1px solid #727b84;'></hr>
             <div class="row row__ID">
                 <div class="col-sm control-group">
-                    <span id=quest__ID>8. Moving or speaking so slowly that other people could have noticed? Or the opposite — being so fidgety or restless that you have been moving around a lot more than usual </span>
+                    <span>8. Moving or speaking so slowly that other people could have noticed? Or the opposite — being so fidgety or restless that you have been moving around a lot more than usual </span>
                 </div>
                 <div class="col-sm control-group">
                     <label class="control control-radio">
@@ -200,7 +203,7 @@
             <hr style='border-top:1px solid #727b84;'></hr>
             <div class="row row__ID">
                 <div class="col-sm control-group">
-                    <span id=quest__ID>9. Thoughts that you would be better off dead or of hurting yourself in some way</span>
+                    <span>9. Thoughts that you would be better off dead or of hurting yourself in some way</span>
                 </div>
                 <div class="col-sm control-group">
                     <label class="control control-radio">
@@ -224,7 +227,7 @@
             <hr style='border-top:1px solid #727b84;'></hr>
             <div class="row row__ID">
                 <div class="col-sm control-group">
-                    <span id=quest__ID>If you checked off <u>any</u> problems, how <u>difficult</u> have these problems made it for you to do your work, take care of things at home, or get along with other people?</span>
+                    <span>If you checked off <u>any</u> problems, how <u>difficult</u> have these problems made it for you to do your work, take care of things at home, or get along with other people?</span>
                 </div>
                 <div class="col-sm control-group">
                     <label class="control control-radio">
@@ -253,8 +256,48 @@
 </section>
 <script>
 function F__ID(){
-    VmInclude:__CURRENT_PATH__/task.js
-    _before_submit_form=function(){alert(1)}
+    //-------------------------------------
+    $('#D__ID').on('load',function(){
+        $('#F__ID')[0].reset();
+        $('#F__ID input:checkbox').removeAttr('checked');
+        $('#submit__ID').show();
+        var record=$vm.vm['__ID'].op.record; if(record==undefined) record=$vm.vm['__ID'].op.input.record;
+        if($vm.vm['__ID'].op.input!=undefined && $vm.vm['__ID'].op.input.admin!=undefined) $('#admin__ID').show();
+        if($vm.vm['__ID'].op.input!=undefined && $vm.vm['__ID'].op.input.readonly!=undefined) $('#submit__ID').hide();
+        $vm.deserialize(record,'#F__ID');
+    })
+    //-------------------------------------
+    $('#F__ID').submit(function(event){
+        //--------------------------------------------------------
+        event.preventDefault();
+        $('#submit__ID').hide();
+        //--------------------------------------------------------
+        var data=$vm.serialize('#F__ID'); var dbv={}
+        _before_submit(data,dbv);
+        //--------------------------------------------------------
+        var db_pid=$vm.module_list[$vm.vm['__ID'].name].table_id;
+        var rid=undefined; if($vm.vm['__ID'].op.record!=undefined) rid=$vm.vm['__ID'].op.record.ID;
+        var req={cmd:"add_json_record_s2",db_pid:db_pid,data:data,dbv:dbv};
+        if(rid!=undefined) req={cmd:"modify_json_record_s2",rid:rid,db_pid:db_pid,data:data,dbv:dbv};
+        $VmAPI.request({data:req,callback:function(res){
+            $vm.refresh=1;
+            if(rid!=undefined) window.history.go(-1);
+            else if($vm.vm['__ID'].op.input!=undefined && $vm.vm['__ID'].op.input.goback!=undefined) window.history.go(-1);
+            else $vm.alert('Your data has been successfully submitted');
+        }});
+        //--------------------------------------------------------
+    })
+    //--------------------------------------------------------
+    var _before_submit=function(data,dbv){
+        if($vm.coq_participant!=undefined){
+            data.Participant=$vm.coq_participant;
+            data.Participant_uid=$vm.coq_participant_uid;
+            dbv.S1=$vm.coq_visit;
+            dbv.PPID=$vm.coq_participant_pid;
+            dbv.PUID=$vm.coq_participant_uid;
+        }
+    }
+    //--------------------------------------------------------
 }
 </script>
 <style>

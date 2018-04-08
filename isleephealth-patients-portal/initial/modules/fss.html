@@ -1,3 +1,6 @@
+<div id=admin__ID style='display:none'>
+    VmInclude:__COMPONENT__/toolbar/form-toolbar.html
+</div>
 <section id=form_container__ID>
     <div id=header__ID>
 		FATIGUE SEVERITY SCALE (FSS)
@@ -6,15 +9,15 @@
         <div class="container">
             <div class="row row__ID">
                 <div class="col-sm control-group">
-                    <span id=quest__ID>Please circle the number between 1 and 7 which you feel best fits the following statements. This
-refers to your usual way of life within the last week. 1 indicates “strongly disagree” and 7
-indicates “strongly agree.”<br><br> </span>
+                    <span>Please circle the number between 1 and 7 which you feel best fits the following statements. This
+                        refers to your usual way of life within the last week. 1 indicates “strongly disagree” and 7
+                        indicates “strongly agree.”<br><br> </span>
                 </div>
             </div>
             <hr style='border-top:1px solid #000;'></hr>
             <div class="row row__ID">
                 <div class="col-sm control-group">
-                    <span id=quest__ID>1. My motivation is lower when I am fatigued.</span>
+                    <span>1. My motivation is lower when I am fatigued.</span>
                 </div>
             </div>
             <div class="row row__ID">
@@ -70,7 +73,7 @@ indicates “strongly agree.”<br><br> </span>
             <hr style='border-top:1px solid #000;'></hr>
             <div class="row row__ID">
                 <div class="col-sm control-group">
-                    <span id=quest__ID>2. Exercise brings on my fatigue.</span>
+                    <span>2. Exercise brings on my fatigue.</span>
                 </div>
             </div>
             <div class="row row__ID">
@@ -126,7 +129,7 @@ indicates “strongly agree.”<br><br> </span>
             <hr style='border-top:1px solid #000;'></hr>
             <div class="row row__ID">
                 <div class="col-sm control-group">
-                    <span id=quest__ID>3. I am easily fatigued.</span>
+                    <span>3. I am easily fatigued.</span>
                 </div>
             </div>
             <div class="row row__ID">
@@ -182,7 +185,7 @@ indicates “strongly agree.”<br><br> </span>
             <hr style='border-top:1px solid #000;'></hr>
             <div class="row row__ID">
                 <div class="col-sm control-group">
-                    <span id=quest__ID>4. Fatigue interferes with my physical functioning.</span>
+                    <span>4. Fatigue interferes with my physical functioning.</span>
                 </div>
             </div>
             <div class="row row__ID">
@@ -238,7 +241,7 @@ indicates “strongly agree.”<br><br> </span>
             <hr style='border-top:1px solid #000;'></hr>
             <div class="row row__ID">
                 <div class="col-sm control-group">
-                    <span id=quest__ID>5. Fatigue causes frequent problems for me.</span>
+                    <span>5. Fatigue causes frequent problems for me.</span>
                 </div>
             </div>
             <div class="row row__ID">
@@ -294,7 +297,7 @@ indicates “strongly agree.”<br><br> </span>
             <hr style='border-top:1px solid #000;'></hr>
             <div class="row row__ID">
                 <div class="col-sm control-group">
-                    <span id=quest__ID>6. My fatigue prevents sustained physical functioning.</span>
+                    <span>6. My fatigue prevents sustained physical functioning.</span>
                 </div>
             </div>
             <div class="row row__ID">
@@ -350,7 +353,7 @@ indicates “strongly agree.”<br><br> </span>
             <hr style='border-top:1px solid #000;'></hr>
             <div class="row row__ID">
                 <div class="col-sm control-group">
-                    <span id=quest__ID>7. Fatigue interferes with carrying out certain duties and responsibilities</span>
+                    <span>7. Fatigue interferes with carrying out certain duties and responsibilities</span>
                 </div>
             </div>
             <div class="row row__ID">
@@ -406,7 +409,7 @@ indicates “strongly agree.”<br><br> </span>
             <hr style='border-top:1px solid #000;'></hr>
             <div class="row row__ID">
                 <div class="col-sm control-group">
-                    <span id=quest__ID>8. Fatigue is among my most disabling symptoms</span>
+                    <span>8. Fatigue is among my most disabling symptoms</span>
                 </div>
             </div>
             <div class="row row__ID">
@@ -462,7 +465,7 @@ indicates “strongly agree.”<br><br> </span>
             <hr style='border-top:1px solid #000;'></hr>
             <div class="row row__ID">
                 <div class="col-sm control-group">
-                    <span id=quest__ID>9. Fatigue interferes with my work, family, or social life.</span>
+                    <span>9. Fatigue interferes with my work, family, or social life.</span>
                 </div>
             </div>
             <div class="row row__ID">
@@ -524,12 +527,50 @@ indicates “strongly agree.”<br><br> </span>
 </section>
 <script>
 	function F__ID(){
-	    VmInclude:__CURRENT_PATH__/task.js
-/*        _before_submit=function(record,dbv){
-            record.fss=(parseInt(record.fss_1)+parseInt(record.fss_2)+parseInt(record.fss_3)+parseInt(record.fss_4)+parseInt(record.fss_5)+parseInt(record.fss_6)+parseInt(record.fss_7)+parseInt(record.fss_8)+parseInt(record.fss_9)).toString();
-			return true;
-		}
-*/
+        //-------------------------------------
+        $('#D__ID').on('load',function(){
+            $('#F__ID')[0].reset();
+            $('#F__ID input:checkbox').removeAttr('checked');
+            $('#submit__ID').show();
+            var record=$vm.vm['__ID'].op.record; if(record==undefined) record=$vm.vm['__ID'].op.input.record;
+            if($vm.vm['__ID'].op.input!=undefined && $vm.vm['__ID'].op.input.readonly!=undefined) $('#submit__ID').hide();
+            if($vm.vm['__ID'].op.input!=undefined && $vm.vm['__ID'].op.input.admin!=undefined) $('#admin__ID').show();
+            $vm.deserialize(record,'#F__ID');
+        })
+        //-------------------------------------
+        $('#F__ID').submit(function(event){
+            //--------------------------------------------------------
+            event.preventDefault();
+            $('#submit__ID').hide();
+            //--------------------------------------------------------
+            $('#fss__ID').val((parseInt($("input[name='fss_1']:checked").val())+parseInt($("input[name='fss_2']:checked").val())+parseInt($("input[name='fss_3']:checked").val())+parseInt($("input[name='fss_4']:checked").val())+parseInt($("input[name='fss_5']:checked").val())+parseInt($("input[name='fss_6']:checked").val())+parseInt($("input[name='fss_7']:checked").val())+parseInt($("input[name='fss_8']:checked").val())+parseInt($("input[name='fss_9']:checked").val())));
+            //--------------------------------------------------------
+            var data=$vm.serialize('#F__ID'); var dbv={}
+            _before_submit(data,dbv);
+            //--------------------------------------------------------
+            var db_pid=$vm.module_list[$vm.vm['__ID'].name].table_id;
+            var rid=undefined; if($vm.vm['__ID'].op.record!=undefined) rid=$vm.vm['__ID'].op.record.ID;
+            var req={cmd:"add_json_record_s2",db_pid:db_pid,data:data,dbv:dbv};
+            if(rid!=undefined) req={cmd:"modify_json_record_s2",rid:rid,db_pid:db_pid,data:data,dbv:dbv};
+            $VmAPI.request({data:req,callback:function(res){
+                $vm.refresh=1;
+                if(rid!=undefined) window.history.go(-1);
+                else if($vm.vm['__ID'].op.input!=undefined && $vm.vm['__ID'].op.input.goback!=undefined) window.history.go(-1);
+                else $vm.alert('Your data has been successfully submitted');
+            }});
+            //--------------------------------------------------------
+        })
+        //--------------------------------------------------------
+        var _before_submit=function(data,dbv){
+            if($vm.coq_participant!=undefined){
+                data.Participant=$vm.coq_participant;
+                data.Participant_uid=$vm.coq_participant_uid;
+                dbv.S1=$vm.coq_visit;
+                dbv.PPID=$vm.coq_participant_pid;
+                dbv.PUID=$vm.coq_participant_uid;
+            }
+        }
+        //--------------------------------------------------------
 	}
 </script>
 <style>

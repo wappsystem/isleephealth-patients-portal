@@ -1,3 +1,6 @@
+<div id=admin__ID style='display:none'>
+    VmInclude:__COMPONENT__/toolbar/form-toolbar.html
+</div>
 <section id=form_container__ID>
     <div id=header__ID>
 		HEALTH HISTORY
@@ -851,6 +854,7 @@ function F__ID(){
         $('#submit__ID').show();
         var record=$vm.vm['__ID'].op.record; if(record==undefined) record=$vm.vm['__ID'].op.input.record;
         if($vm.vm['__ID'].op.input!=undefined && $vm.vm['__ID'].op.input.readonly!=undefined) $('#submit__ID').hide();
+        if($vm.vm['__ID'].op.input!=undefined && $vm.vm['__ID'].op.input.admin!=undefined) $('#admin__ID').show();
         $vm.deserialize(record,'#F__ID');
     })
     //-------------------------------------
