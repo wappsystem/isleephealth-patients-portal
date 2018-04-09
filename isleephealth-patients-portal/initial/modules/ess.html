@@ -200,7 +200,6 @@
                     </label>
                 </div>
             </div>
-            <input type="text"  name="ESS" id=ESS__ID style='display:none'/>
             <hr style='border-top:1px solid #727b84;'></hr>
 			<br>
     		<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
@@ -244,6 +243,7 @@ function F__ID(){
     })
     //--------------------------------------------------------
     var _before_submit=function(data,dbv){
+        before_submit_1(data,dbv);
         if($vm.coq_participant!=undefined){
             data.Participant=$vm.coq_participant;
             data.Participant_uid=$vm.coq_participant_uid;
@@ -251,6 +251,10 @@ function F__ID(){
             dbv.PPID=$vm.coq_participant_pid;
             dbv.PUID=$vm.coq_participant_uid;
         }
+    }
+    //--------------------------------------------------------
+    var before_submit_1=function(record,dbv){
+        record.ESS=(parseInt(record.ESS_1)+parseInt(record.ESS_2)+parseInt(record.ESS_3)+parseInt(record.ESS_4)+parseInt(record.ESS_5)+parseInt(record.ESS_6)+parseInt(record.ESS_7)+parseInt(record.ESS_8)).toString();
     }
     //--------------------------------------------------------
 }

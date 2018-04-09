@@ -684,10 +684,10 @@
                     </label>
                 </div>
             </div>
-            <input type="text"  name="DASS_DS" id=DASS_DS__ID style='display:none'/>
+<!--            <input type="text"  name="DASS_DS" id=DASS_DS__ID style='display:none'/>
             <input type="text"  name="DASS_AS" id=DASS_AS__ID style='display:none'/>
             <input type="text"  name="DASS_SS" id=DASS_SS__ID style='display:none'/>
-            <hr style='border-top:1px solid #000;'></hr>
+-->            <hr style='border-top:1px solid #000;'></hr>
 			<br>
     		<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
     	</div>
@@ -711,10 +711,6 @@ function F__ID(){
         event.preventDefault();
         $('#submit__ID').hide();
         //--------------------------------------------------------
-        $('#DASS_DS__ID').val((parseInt($("input[name='DASS_3']:checked").val())+parseInt($("input[name='DASS_5']:checked").val())+parseInt($("input[name='DASS_10']:checked").val())+parseInt($("input[name='DASS_13']:checked").val())+parseInt($("input[name='DASS_16']:checked").val())+parseInt($("input[name='DASS_17']:checked").val())+parseInt($("input[name='DASS_21']:checked").val()))*2);
-        $('#DASS_AS__ID').val((parseInt($("input[name='DASS_2']:checked").val())+parseInt($("input[name='DASS_4']:checked").val())+parseInt($("input[name='DASS_7']:checked").val())+parseInt($("input[name='DASS_9']:checked").val())+parseInt($("input[name='DASS_15']:checked").val())+parseInt($("input[name='DASS_19']:checked").val())+parseInt($("input[name='DASS_20']:checked").val()))*2);
-        $('#DASS_SS__ID').val((parseInt($("input[name='DASS_1']:checked").val())+parseInt($("input[name='DASS_6']:checked").val())+parseInt($("input[name='DASS_8']:checked").val())+parseInt($("input[name='DASS_11']:checked").val())+parseInt($("input[name='DASS_12']:checked").val())+parseInt($("input[name='DASS_14']:checked").val())+parseInt($("input[name='DASS_18']:checked").val()))*2);
-        //--------------------------------------------------------
         var data=$vm.serialize('#F__ID'); var dbv={}
         _before_submit(data,dbv);
         //--------------------------------------------------------
@@ -732,6 +728,7 @@ function F__ID(){
     })
     //--------------------------------------------------------
     var _before_submit=function(data,dbv){
+        before_submit_1(data,dbv);
         if($vm.coq_participant!=undefined){
             data.Participant=$vm.coq_participant;
             data.Participant_uid=$vm.coq_participant_uid;
@@ -739,6 +736,12 @@ function F__ID(){
             dbv.PPID=$vm.coq_participant_pid;
             dbv.PUID=$vm.coq_participant_uid;
         }
+    }
+    //--------------------------------------------------------
+    var before_submit_1=function(record,dbv){
+        record.DASS_DS=((parseInt(record.DASS_3)+parseInt(record.DASS_5)+parseInt(record.DASS_10)+parseInt(record.DASS_13)+parseInt(record.DASS_16)+parseInt(record.DASS_17)+parseInt(record.DASS_21))*2).toString();
+        record.DASS_AS=((parseInt(record.DASS_2)+parseInt(record.DASS_4)+parseInt(record.DASS_7)+parseInt(record.DASS_9)+parseInt(record.DASS_15)+parseInt(record.DASS_19)+parseInt(record.DASS_20))*2).toString();
+        record.DASS_SS=((parseInt(record.DASS_1)+parseInt(record.DASS_6)+parseInt(record.DASS_8)+parseInt(record.DASS_11)+parseInt(record.DASS_12)+parseInt(record.DASS_14)+parseInt(record.DASS_18))*2).toString();
     }
     //--------------------------------------------------------
 }

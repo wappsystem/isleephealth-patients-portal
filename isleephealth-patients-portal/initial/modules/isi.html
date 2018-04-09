@@ -247,9 +247,9 @@
                 </div>
             </div>
             <hr style='border-top:1px solid #000;margin:0'></hr>
-            <input type="text"  name="ISI" id=ISI__ID style='display:none'/>
+<!--            <input type="text"  name="ISI" id=ISI__ID style='display:none'/>
             <input type="text"  name="ISI_1" id=ISI_1__ID style='display:none'/>
-            <br>
+-->            <br>
     		<button id=submit__ID type="submit" class="btn btn-secondary">Submit</button>
     	</div>
     </form>
@@ -272,9 +272,6 @@
             event.preventDefault();
             $('#submit__ID').hide();
             //--------------------------------------------------------
-            $('#ISI__ID').val((parseInt($("input[name='ISI_2']:checked").val())+parseInt($("input[name='ISI_3']:checked").val())+parseInt($("input[name='ISI_4']:checked").val())+parseInt($("input[name='ISI_5']:checked").val())+parseInt($("input[name='ISI_1a']:checked").val())+parseInt($("input[name='ISI_1b']:checked").val())+parseInt($("input[name='ISI_1c']:checked").val())));
-            $('#ISI_1__ID').val((parseInt($("input[name='ISI_1a']:checked").val())+parseInt($("input[name='ISI_1b']:checked").val())+parseInt($("input[name='ISI_1c']:checked").val())));
-            //--------------------------------------------------------
             var data=$vm.serialize('#F__ID'); var dbv={}
             _before_submit(data,dbv);
             //--------------------------------------------------------
@@ -292,6 +289,7 @@
         })
         //--------------------------------------------------------
         var _before_submit=function(data,dbv){
+            before_submit_1(data,dbv);
             if($vm.coq_participant!=undefined){
                 data.Participant=$vm.coq_participant;
                 data.Participant_uid=$vm.coq_participant_uid;
@@ -299,6 +297,11 @@
                 dbv.PPID=$vm.coq_participant_pid;
                 dbv.PUID=$vm.coq_participant_uid;
             }
+        }
+        //--------------------------------------------------------
+        var before_submit_1=function(record,dbv){
+            record.ISI=(parseInt(record.ISI_2)+parseInt(record.ISI_3)+parseInt(record.ISI_4)+parseInt(record.ISI_5)+parseInt(record.ISI_1a)+parseInt(record.ISI_1b)+parseInt(record.ISI_1c)).toString();
+            record.ISI_1=(parseInt(record.ISI_1a)+parseInt(record.ISI_1b)+parseInt(record.ISI_1c)).toString();
         }
         //--------------------------------------------------------
 	}
