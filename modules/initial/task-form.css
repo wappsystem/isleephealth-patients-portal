@@ -31,6 +31,7 @@
         font-size: 14px;
         color: #444645;
         line-height: 21px;
+        margin-left:30px;
     }
 
     #D__ID input[type="radio"] {
@@ -105,6 +106,7 @@
     }
     /* RADIO BUTTONS */
     #D__ID .radiobuttons {
+        text-align:center;
         display: inline-block;
         position: relative;
         cursor: pointer;
@@ -238,8 +240,20 @@
     #D__ID .form-group .questiongroup label.radiobuttons {
         margin-right: 10px;
     }
+    #D__ID .labelleft {
+        margin-left:-15px;
+    }
+    #D__ID .labelright {
+        margin-left:-15px;
+    }
     @media (min-width: 600px) {
-    #D__ID  fieldset.subquestions br { display: none; }
+        #D__ID  fieldset.subquestions br { display: none; }
+        #D__ID label {
+            margin-left:0;
+        }
+        #D__ID .labelleft {
+            margin-left:0;
+        }
     }
 
 </style>
