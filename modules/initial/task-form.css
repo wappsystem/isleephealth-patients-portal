@@ -5,7 +5,7 @@
         color: #FCFBF5;
         letter-spacing: 0;
         display: block;
-        background-color: #45496A;
+        background-color: #00515f;
         padding: 15px;
         border-radius: 3px 3px 0 0;
         margin-top: -5px
@@ -51,8 +51,8 @@
     }
     /* SUBMIT BUTTON */
     #D__ID .btn-primary, #D__ID .btn-primary:active, #D__ID .btn-primary:visited, #D__ID .btn-primary:focus {
-        background-color: #45496A;
-        border-color: #45496A;
+        background-color: #00919f;
+        border-color: #00919f;
         font-family: 'Nunito Sans';
         font-weight: lighter;
         font-size: 12px;
@@ -66,8 +66,8 @@
         margin: 15px;
     }
     #D__ID .btn-primary:hover {
-        background-color: #35395D;
-        border-color: #35395D;
+        background-color: #00707f;
+        border-color: #00707f;
         font-family: 'Nunito Sans';
         font-weight: lighter;
         font-size: 12px;
@@ -132,10 +132,10 @@
         color:#fff;
     }
     #D__ID .radiobuttons:hover input ~ .checkmark {
-        background-color: #007E8D;
+        background-color: #003E4D;
     }
     #D__ID .radiobuttons input:checked ~ .checkmark {
-        background-color: #007E8D;
+        background-color: #003E4D;
     }
     #D__ID .checkmark:after {
         content: "";
