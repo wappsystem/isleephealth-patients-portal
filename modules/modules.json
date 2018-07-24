@@ -1,0 +1,41 @@
+{
+	"modules":
+	{
+		"panel_initial":		{					   "url":"frame/initial.html"},
+		"contact-details":		{"table_id":"20011470","url":"initial/contact-details.html"},
+		"medicare-referrals":	{"table_id":"20011363","url":"initial/medicare-referrals.html"},
+        "sleep-history":		{"table_id":"20011469","url":"initial/sleep-history.html"},
+		"health-history":		{"table_id":"20011365","url":"initial/health-history.html"},
+		"ess":					{"table_id":"20011364","url":"initial/ess.html"},
+		"dass":					{"table_id":"20011464","url":"initial/dass.html"},
+		"isi":					{"table_id":"20011465","url":"initial/isi.html"},
+		"psqi":					{"table_id":"20011466","url":"initial/psqi.html"},
+		"phq":					{"table_id":"20011467","url":"initial/phq.html"},
+		"fss":					{"table_id":"20011468","url":"initial/fss.html"}
+    },
+	"dictionary":
+		{
+        "contact-details":{
+            "Name":"Name",
+            "Sex":"Sex",
+            "DOB":"Date of birth",
+            "Residential_Address":"Residential Address",
+            "Suburb":"Suburb",
+            "Contact_number":"Phone",
+            "Contact_email":"Email",
+            "Emergency_contact":"Emergency Contact",
+            "Emergency_contact_number":"Emergency Contact Phone"
+        },
+        "medicare-referrals":{
+            "Medicare_number":"Medicare number",
+            "Medicare_reference_number":"Ref",
+            "Medicare_expiry":"Expiry Date",
+            "Residential_Address":"Residential Address",
+            "Referring_doctor":"Referring Doctor",
+            "Referring_doctor_address":"Address",
+            "GP_Family_doctor":"GP/Family Doctor",
+            "GP_Family_doctor_address":"Address",
+            "DVA":"DVA"
+        }
+    }
+}

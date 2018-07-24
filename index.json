@@ -1,9 +1,0 @@
-{
-	"api_path_development":"https://cbs.wappsystem.com/dev/",
-	"api_path_production":"https://cbs.wappsystem.com/pro/",
-	"default_production":"No",
-	"panels":{
-		"website":		{"url":"","modules":["website/index.json"]},
-		"panel_initial":{"url":"isleephealth-patients-portal/initial/panel.html","modules":["isleephealth-patients-portal/initial/index.json"]}
-	}
-}
