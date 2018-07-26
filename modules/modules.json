@@ -2,16 +2,16 @@
 	"modules":
 	{
 		"panel_initial":		{					   "url":"frame/initial.html"},
-		"contact-details":		{"table_id":"20011470","url":"initial/contact-details.html"},
-		"medicare-referrals":	{"table_id":"20011363","url":"initial/medicare-referrals.html"},
-        "sleep-history":		{"table_id":"20011469","url":"initial/sleep-history.html"},
-		"health-history":		{"table_id":"20011365","url":"initial/health-history.html"},
-		"ess":					{"table_id":"20011364","url":"initial/ess.html"},
-		"dass":					{"table_id":"20011464","url":"initial/dass.html"},
-		"isi":					{"table_id":"20011465","url":"initial/isi.html"},
-		"psqi":					{"table_id":"20011466","url":"initial/psqi.html"},
-		"phq":					{"table_id":"20011467","url":"initial/phq.html"},
-		"fss":					{"table_id":"20011468","url":"initial/fss.html"}
+		"contact-details":		{"table_id":"20011470","url":"initial/mirror/contact-details.html"},
+		"medicare-referrals":	{"table_id":"20011363","url":"initial/mirror/medicare-referrals.html"},
+        "sleep-history":		{"table_id":"20011469","url":"initial/mirror/sleep-history.html"},
+		"health-history":		{"table_id":"20011365","url":"initial/mirror/health-history.html"},
+		"ess":					{"table_id":"20011364","url":"initial/mirror/ess.html"},
+		"dass":					{"table_id":"20011464","url":"initial/mirror/dass.html"},
+		"isi":					{"table_id":"20011465","url":"initial/mirror/isi.html"},
+		"psqi":					{"table_id":"20011466","url":"initial/mirror/psqi.html"},
+		"phq":					{"table_id":"20011467","url":"initial/mirror/phq.html"},
+		"fss":					{"table_id":"20011468","url":"initial/mirror/fss.html"}
     },
 	"dictionary":
 		{
