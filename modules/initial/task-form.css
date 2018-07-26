@@ -51,8 +51,8 @@
     }
     /* SUBMIT BUTTON */
     #D__ID .btn-primary, #D__ID .btn-primary:active, #D__ID .btn-primary:visited, #D__ID .btn-primary:focus {
-        background-color: #00919f;
-        border-color: #00919f;
+        background-color: #00707f;
+        border-color: #00707f;
         font-family: 'Nunito Sans';
         font-weight: lighter;
         font-size: 12px;
@@ -66,8 +66,8 @@
         margin: 15px;
     }
     #D__ID .btn-primary:hover {
-        background-color: #00707f;
-        border-color: #00707f;
+        background-color: #00515e;
+        border-color: #00515e;
         font-family: 'Nunito Sans';
         font-weight: lighter;
         font-size: 12px;
@@ -95,7 +95,7 @@
         padding-right: 25px
     }
     #D__ID .btn-outline-light:hover {
-        color: #007E8D;
+        color: #00515e;
     }
     #D__ID p.note {
         font-family: 'Nunito Sans';
@@ -181,10 +181,10 @@
       border-radius: 0%;
     }
     #D__ID .checkboxes:hover input ~ .check_checkmark {
-      background-color: #007E8D;
+      background-color: #003E4D;
     }
     #D__ID .checkboxes input:checked ~ .check_checkmark {
-      background-color: #007E8D;
+      background-color: #003E4D;
     }
     #D__ID .check_checkmark:after {
       content: "";
