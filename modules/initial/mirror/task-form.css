@@ -227,6 +227,11 @@
       font-size: 16px;
       color: #6D6F72;
     }
+    #D__ID .form-group textarea {
+      font-family: 'Nunito Sans';
+      font-size: 16px;
+      color: #6D6F72;
+    }
     #D__ID fieldset.subquestions legend {
         font-family: 'Nunito Sans';
         font-size: 16px;

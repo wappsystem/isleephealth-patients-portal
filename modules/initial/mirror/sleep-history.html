@@ -267,48 +267,63 @@
   </div>
   <script>
       function F__ID(){
-          //-------------------------------------
+          //------------------------------------------------------------
+          $("input[name='unusual_movements']").change(function(){
+              var radioValue = $(this).val();
+              if(radioValue=='Yes') $('#unusual_movements_describe__ID').prop('required',true);
+              else $('#unusual_movements_describe__ID').prop('required',false);
+          })
+          $("input[name='toilet']").change(function(){
+              var radioValue = $(this).val();
+              if(radioValue=='Yes') $('#toilet_number__ID').prop('required',true);
+              else $('#toilet_number__ID').prop('required',false);
+          })
+          $("input[name='sleeping_tablets']").change(function(){
+              var radioValue = $(this).val();
+              if(radioValue=='Yes') {$('#sleeping_tablets_frequency__ID').prop('required',true);$('#sleeping_tablets_name__ID').prop('required',true);}
+              else {$('#sleeping_tablets_frequency__ID').prop('required',false);$('#sleeping_tablets_name__ID').prop('required',false);}
+          })
+          //------------------------------------------------------------
           $('#D__ID').on('load',function(){
               $('#F__ID')[0].reset();
               $('#F__ID input:checkbox').removeAttr('checked');
               $('#submit__ID').show();
-              var record=$vm.vm['__ID'].op.record; if(record==undefined) record=$vm.vm['__ID'].op.input.record;
+  			var record=$vm.vm['__ID'].op.record; if(record==undefined) record=$vm.vm['__ID'].op.input.record;
               if($vm.vm['__ID'].op.input!=undefined && $vm.vm['__ID'].op.input.readonly!=undefined) $('#submit__ID').hide();
               if($vm.vm['__ID'].op.input!=undefined && $vm.vm['__ID'].op.input.admin!=undefined) $('#admin__ID').show();
               $vm.deserialize(record,'#F__ID');
           })
           //-------------------------------------
-          $('#F__ID').submit(function(event){
-              //--------------------------------------------------------
-              event.preventDefault();
-              $('#submit__ID').hide();
-              //--------------------------------------------------------
+  		$('#F__ID').submit(function(event){
+  			//--------------------------------------------------------
+  			event.preventDefault();
+  			$('#submit__ID').hide();
+  			//--------------------------------------------------------
               var data=$vm.serialize('#F__ID'); var dbv={}
               _before_submit(data,dbv);
-              //--------------------------------------------------------
+  			//--------------------------------------------------------
               var db_pid=$vm.module_list[$vm.vm['__ID'].name].table_id;
               var rid=undefined; if($vm.vm['__ID'].op.record!=undefined) rid=$vm.vm['__ID'].op.record.ID;
               var req={cmd:"add_json_record_s2",db_pid:db_pid,data:data,dbv:dbv};
-              if(rid!=undefined) req={cmd:"modify_json_record_s2",rid:rid,db_pid:db_pid,data:data,dbv:dbv};
+  			if(rid!=undefined) req={cmd:"modify_json_record_s2",rid:rid,db_pid:db_pid,data:data,dbv:dbv};
               $VmAPI.request({data:req,callback:function(res){
                   $vm.refresh=1;
                   if(rid!=undefined) window.history.go(-1);
-                  else if($vm.vm['__ID'].op.input!=undefined && $vm.vm['__ID'].op.input.goback!=undefined) window.history.go(-1);
+  				else if($vm.vm['__ID'].op.input!=undefined && $vm.vm['__ID'].op.input.goback!=undefined) window.history.go(-1);
                   else $vm.alert('Your data has been successfully submitted');
               }});
-              //--------------------------------------------------------
-          })
-          //--------------------------------------------------------
+  			//--------------------------------------------------------
+  		})
+  		//--------------------------------------------------------
           var _before_submit=function(data,dbv){
-              before_submit_1(data,dbv);
               if($vm.coq_participant!=undefined){
                   data.Participant=$vm.coq_participant;
-                  data.Participant_uid=$vm.coq_participant_uid;
-                  dbv.S1=$vm.coq_visit;
-                  dbv.PPID=$vm.coq_participant_pid;
-                  dbv.PUID=$vm.coq_participant_uid;
+              	data.Participant_uid=$vm.coq_participant_uid;
+          		dbv.S1=$vm.coq_visit;
+          		dbv.PPID=$vm.coq_participant_pid;
+          		dbv.PUID=$vm.coq_participant_uid;
               }
-          }
+  		}
           //--------------------------------------------------------
   	}
   </script>
