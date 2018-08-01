@@ -251,6 +251,7 @@
           })
           //--------------------------------------------------------
           var _before_submit=function(data,dbv){
+              before_submit_1(data,dbv);
               if($vm.coq_participant!=undefined){
                   data.Participant=$vm.coq_participant;
                   data.Participant_uid=$vm.coq_participant_uid;
@@ -258,6 +259,10 @@
                   dbv.PPID=$vm.coq_participant_pid;
                   dbv.PUID=$vm.coq_participant_uid;
               }
+          }
+          //--------------------------------------------------------
+          var before_submit_1=function(record,dbv){
+              record.phq=(parseInt(record.phq_1)+parseInt(record.phq_2)+parseInt(record.phq_3)+parseInt(record.phq_4)+parseInt(record.phq_5)+parseInt(record.phq_6)+parseInt(record.phq_7)+parseInt(record.phq_8)+parseInt(record.phq_9)).toString();
           }
           //--------------------------------------------------------
       }
