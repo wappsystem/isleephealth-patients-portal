@@ -219,7 +219,7 @@
   					if(rid==undefined)	rid=res.ret;
   	                $vm.upload_form_files(rid,$('#F__ID'),function(){
   	                    var data=$vm.get_original_file_name($('#F__ID'));
-  	                    var req={cmd:"modify_json_record",rid:rid,db_pid:db_pid,data:data,dbv:{}};
+  	                    var req={cmd:"modify_json_record_s2",rid:rid,db_pid:db_pid,data:data,dbv:{}};
   						//file.3. recorver name
   	        			$VmAPI.request({data:req,callback:function(res){
                               $vm.refresh=1;
