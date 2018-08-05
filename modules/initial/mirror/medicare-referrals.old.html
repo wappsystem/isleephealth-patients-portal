@@ -1,5 +1,5 @@
 <div id=D__ID>
-    <!--third html start -->
+<!--third html start -->
     <div class="container mt-95 mb-3">
       <div class="row" >
         <!-- form container start -->
@@ -96,64 +96,66 @@
                          </fieldset>
                      </div>
                  </div>
+<!--
                  <div class="form-group">
      				 <div class="questiongroup ">
                         <fieldset class="">
                             <label ><span class="">Referring letter (Attach file by clicking on <i class="fa fa-paperclip"></i> below)</span>
-                           </label>
-                           <div id=File_Name__ID data-id=File_Name></div>
-                           <br>
+                                <div id=File_Name__ID data-id=File_Name></div>
+                           </label><br>
                          </fieldset>
                      </div>
                  </div>
+-->
                  <button type="submit" id="submit__ID" class="btn btn-primary btn-lg">Submit</button>
               </form>
             </div>
          </div>
         </div>
       </div>
-    </div>
+  </div>
     <script>
         function F__ID(){
-            //-------------------------------------
-            VmInclude:__COMPONENT__/module/form.v1.js
-            VmInclude:__CURRENT_PATH__/task-form.js
-            //-------------------------------------
-            m.default_load=m.load;
-            m.load=function(){
-                m.default_load();
-                if(m.input.readonly!=undefined) $('#submit__ID').hide();
-                $vm.render_file_field_v2(m.input.record,'__ID',$('#File_Name__ID'));
-                $('#alert_success__ID').hide();
-                $('#alert_fail__ID').hide();
-                benefits_process();
-            }
-            //-------------------------------------
-            var benefits_process=function(){
-                $('#s1a__ID').hide(); $('#s1b__ID').hide(); $('#s2__ID').hide(); $('#s3__ID').hide();
-                $("#s1a__ID input").prop('disabled', true);
-                $("#s1b__ID input").prop('disabled', true);
-                $("#s2__ID input").prop('disabled', true);
-                $("#s3__ID input").prop('disabled', true);
-                var benefits = $("select[name='benefits']").val();
-                switch(benefits){
-                    case 'Medicare':
-                        $('#s1a__ID').show(); $('#s1b__ID').show();
-                        $("#s1a__ID input").prop('disabled', false);
-                        $("#s1b__ID input").prop('disabled', false);
-                        break;
-                    case 'Department of Veterans Affairs':
-                        $('#s2__ID').show();
-                        $("#s2__ID input").prop('disabled', false);
-                        break;
-                    case 'Self Funded':
-                        $('#s3__ID').show();
-                        $("#s3__ID input").prop('disabled', false);
-                        break;
-                }
-            };
-            //--------------------------------------------------------
-            $('#GP_Ref__ID').on('change',function(){
+          //--------------------------------------------------------
+          $('#D__ID').on('load',function(){
+              $('#F__ID')[0].reset();
+              $('#F__ID input:checkbox').removeAttr('checked');
+              $('#submit__ID').show();
+              var record=$vm.vm['__ID'].record; if(record==undefined) record=$vm.vm['__ID'].input.record;
+              if($vm.vm['__ID'].input!=undefined && $vm.vm['__ID'].input.readonly!=undefined) $('#submit__ID').hide();
+              if($vm.vm['__ID'].input!=undefined && $vm.vm['__ID'].input.admin!=undefined) $('#admin__ID').show();
+              $vm.deserialize(record,'#F__ID');
+              $vm.render_file_field(record,'__ID',$('#File_Name__ID'));
+              $('#alert_success__ID').hide();
+              $('#alert_fail__ID').hide();
+              benefits_process();
+          })
+          //--------------------------------------------------------
+          var benefits_process=function(){
+              $('#s1a__ID').hide(); $('#s1b__ID').hide(); $('#s2__ID').hide(); $('#s3__ID').hide();
+              $("#s1a__ID input").prop('disabled', true);
+              $("#s1b__ID input").prop('disabled', true);
+              $("#s2__ID input").prop('disabled', true);
+              $("#s3__ID input").prop('disabled', true);
+              var benefits = $("select[name='benefits']").val();
+              switch(benefits){
+                  case 'Medicare':
+                      $('#s1a__ID').show(); $('#s1b__ID').show();
+                      $("#s1a__ID input").prop('disabled', false);
+                      $("#s1b__ID input").prop('disabled', false);
+                  break;
+                  case 'Department of Veterans Affairs':
+                      $('#s2__ID').show();
+                      $("#s2__ID input").prop('disabled', false);
+                  break;
+                  case 'Self Funded':
+                      $('#s3__ID').show();
+                      $("#s3__ID input").prop('disabled', false);
+                  break;
+              }
+          };
+          //--------------------------------------------------------
+          $('#GP_Ref__ID').on('change',function(){
               if($('#GP_Ref__ID:checked').val()=='on'){
                   $("#GP_Family_doctor__ID").prop("required",false);
                   $("#GP_Family_doctor_address__ID").prop("required",false);
@@ -162,8 +164,8 @@
                   $("#GP_Family_doctor__ID").prop("required",true);
                   $("#GP_Family_doctor_address__ID").prop("required",true);
               }
-            })
-            $('#s1a__ID input[name=Medicare_number').on('change',function(){
+          })
+          $('#s1a__ID input[name=Medicare_number').on('change',function(){
                var mcn=$(this).val();
                var mcn1=mcn.replace(/\s/g,'');
                if(mcn1.length==10){
@@ -188,15 +190,67 @@
                   //alert_validation="Please check for wrong Entry";
                   //$('#ModalLabel').html('Error!');
               }
-            })
-            //--------------------------------------------------------
-            var currentYear = (new Date).getFullYear();
-            $('#s1b__ID input[name=Medicare_expiry_yy]').prop('min',currentYear).prop('max',currentYear+5);
-            //--------------------------------------------------------
-            $("select[name='benefits']").on('change',function(){
+          })
+          //--------------------------------------------------------
+          var currentYear = (new Date).getFullYear();
+          $('#s1b__ID input[name=Medicare_expiry_yy]').prop('min',currentYear).prop('max',currentYear+5);
+          //--------------------------------------------------------
+          $("select[name='benefits']").on('change',function(){
               benefits_process();
-            })
-            //-------------------------------------
+          })
+          //-------------------------------------
+          $('#F__ID').submit(function(event){
+              //--------------------------------------------------------
+              event.preventDefault();
+              $('#submit__ID').hide();
+              //--------------------------------------------------------
+              var data=$vm.serialize('#F__ID'); var dbv={}
+              //file.1. set as upload_unsuccessful
+              var num=$vm.set_file_name_as_upload_unsuccessful(data,$('#F__ID'));
+        		//--------------------------------------------------------
+              _before_submit(data,dbv);
+              //--------------------------------------------------------
+              var db_pid=$vm.module_list[$vm.vm['__ID'].name].table_id;
+              var rid=undefined; if($vm.vm['__ID'].record!=undefined) rid=$vm.vm['__ID'].record.ID;
+              var req={cmd:"add_json_record_s2",db_pid:db_pid,data:data,dbv:dbv};
+              if(rid!=undefined) req={cmd:"modify_json_record_s2",rid:rid,db_pid:db_pid,data:data,dbv:dbv};
+              var old_rid=rid;
+              $VmAPI.request({data:req,callback:function(res){
+                  if(num>0){
+        				//file.2. upload files
+        				if(rid==undefined)	rid=res.ret;
+                        $vm.upload_form_files(rid,$('#F__ID'),function(){
+                            var data=$vm.get_original_file_name($('#F__ID'));
+                            var req={cmd:"modify_json_record_s2",rid:rid,db_pid:db_pid,data:data,dbv:{}};
+        					//file.3. recorver name
+                			$VmAPI.request({data:req,callback:function(res){
+                              $vm.refresh=1;
+                              if(old_rid!=undefined) window.history.go(-1);
+                              else if($vm.vm['__ID'].input!=undefined && $vm.vm['__ID'].input.goback!=undefined) window.history.go(-1);
+                              else $vm.alert('Your data has been successfully submitted');
+                            }})
+                        })
+        			}
+        			else{
+                      $vm.refresh=1;
+                      if(old_rid!=undefined) window.history.go(-1);
+                      else if($vm.vm['__ID'].input!=undefined && $vm.vm['__ID'].input.goback!=undefined) window.history.go(-1);
+                      else $vm.alert('Your data has been successfully submitted');
+        			}
+              }});
+              //--------------------------------------------------------
+          })
+          //--------------------------------------------------------
+          var _before_submit=function(data,dbv){
+              if($vm.coq_participant!=undefined){
+                  data.Participant=$vm.coq_participant;
+                  data.Participant_uid=$vm.coq_participant_uid;
+                  dbv.S1=$vm.coq_visit;
+                  dbv.PPID=$vm.coq_participant_pid;
+                  dbv.PUID=$vm.coq_participant_uid;
+              }
+          }
+          //--------------------------------------------------------
         }
     </script>
     <style>

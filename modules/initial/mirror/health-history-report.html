@@ -255,9 +255,9 @@
               $('#F__ID')[0].reset();
               $('#F__ID input:checkbox').removeAttr('checked');
               $('#submit__ID').show();
-              var record=$vm.vm['__ID'].op.record; if(record==undefined) record=$vm.vm['__ID'].op.input.record;
-              if($vm.vm['__ID'].op.input!=undefined && $vm.vm['__ID'].op.input.readonly!=undefined) $('#submit__ID').hide();
-              if($vm.vm['__ID'].op.input!=undefined && $vm.vm['__ID'].op.input.admin!=undefined) $('#admin__ID').show();
+              var record=$vm.vm['__ID'].record; if(record==undefined) record=$vm.vm['__ID'].input.record;
+              if($vm.vm['__ID'].input!=undefined && $vm.vm['__ID'].input.readonly!=undefined) $('#submit__ID').hide();
+              if($vm.vm['__ID'].input!=undefined && $vm.vm['__ID'].input.admin!=undefined) $('#admin__ID').show();
               $vm.deserialize(record,'#F__ID');
               if(record.hypertension=='on') $('input[name=hypertension]').val('Yes');
               else $('input[name=hypertension]').val('No');
