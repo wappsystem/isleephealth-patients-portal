@@ -70,7 +70,8 @@
                     $VmAPI.set_token(res.token,'');
 					if(res.S1!=undefined) $vm.coq_participant=res.S1;
 					$vm.coq_task_list=res.List;
-					$vm.nav_load_module("panel_"+visit);
+					//$vm.nav_load_module("panel_"+visit);
+					$vm.load_module_v2("panel_"+visit,'',{});
                 }
                 else{
                     $('#ErrMsg__ID').text("Invalid participant login ID or password.")
@@ -101,7 +102,7 @@
 	}
 	@media screen and (max-width:786px){
 		#page__ID{
-			display: block;
+			/*display: block;*/
 		}
 	}
     #panel__ID li{
