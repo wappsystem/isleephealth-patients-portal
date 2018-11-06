@@ -35,7 +35,7 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.2.1.min.js"></script>
     <script main>
         //------------------------------------
-        $vm={};$VmAPI={};$vm.ver=[1.11,1.10];
+        $vm={};$VmAPI={};$vm.ver=[1.12,1.10];
         $vm.start_time=new Date().getTime();
         $vm.api_path_development="https://cbs.wappsystem.com/dev/";
         $vm.api_path_production="https://cbs.wappsystem.com/pro/";
@@ -45,16 +45,16 @@
         if(window.location.hostname=='127.0.0.1' || window.location.hostname=='localhost') $vm.localhost=true;
         //------------------------------------
         $vm.module_links=[
-            "https://wappsystem.github.io/isleephealth/modules.json",
+            "https://ish.wappsystem.com.au/modules.json",
         ];
         $vm.module_list={
-            "home": {"url":"https://wappsystem.github.io/isleephealth/modules/online-questionnaire/frame/home.html"},
+            "home": {"url":"https://ish.wappsystem.com.au/modules/online-questionnaire/frame/home.html"},
         }
         //------------------------------------
         $vm.local_url=function(url){
             var urlR=url;
             if($vm.localhost==true){
-                urlR=urlR.replace('https://wappsystem.github.io/isleephealth/','http://127.0.0.1:8000/wappsystem/isleephealth/');
+                urlR=urlR.replace('https://ish.wappsystem.com.au/','http://127.0.0.1:8000/wappsystem/isleephealth/');
             }
             return urlR;
         }
